@@ -7,11 +7,15 @@ Gem adds methods to the ActiveRecord::Base classes to easily generate checksum o
 
 This is useful for fragment caching when you list all records from table in cached partial
 
-    <%= cache [@event, User.checksum] do %>
+    <% cache [@event, User.checksum] do %>
       ...
         <%= f.collection_select :user_id, @users || User.all, :id, :name %>
       ...
     <% end %>
+
+You can also omit the `checksum` method because ActiveRecord::Base now responds to `cache_key` method
+
+    <% cache [@event, User] do %>
     
 It also uses PerRequestCache for performance.
 

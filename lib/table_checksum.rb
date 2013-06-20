@@ -13,6 +13,10 @@ module TableChecksum
     def checksum
       TableChecksum.for(self)
     end
+    
+    def cache_key
+      checksum.to_param
+    end
   end
 end
 
